@@ -82,3 +82,24 @@ penguins-eggs-audit/
         ├── grant-license/        # license compliance scanning
         └── sbom-reference/       # CISA SBOM generation reference workflows
 ```
+
+## Origins
+
+penguins-eggs-audit integrates 39 git-based projects. Key upstreams by domain:
+
+**Distribution & Decentralized**
+- [git-lfs/git-lfs](https://github.com/git-lfs/git-lfs) — ISO tracking via Git LFS
+- [nicowillis/giftless](https://github.com/nicowillis/giftless) — self-hosted Git LFS server
+- [gogs/gogs](https://github.com/gogs/gogs) — self-hosted Git registry
+- [brig-ipfs/brig](https://github.com/sahib/brig) — IPFS-based distribution via brig
+- [ipfs/go-ipfs](https://github.com/ipfs/go-ipfs) — IPFS node
+
+**Config Management & Build**
+- [presslabs/gitfs](https://github.com/presslabs/gitfs) — FUSE-mounted git repo for wardrobe editing
+- [system-transparency/system-transparency](https://github.com/system-transparency/system-transparency) — reproducible verified builds
+
+**Dev Workflow & Security**
+- [linear-b/gitstream](https://github.com/linear-b/gitstream) — PR automation rules
+- [jfrog/frogbot](https://github.com/jfrog/frogbot) — security scanning GitHub Action
+- [anchore/syft](https://github.com/anchore/syft) — SBOM generation
+- [anchore/grant](https://github.com/anchore/grant) — license compliance scanning
