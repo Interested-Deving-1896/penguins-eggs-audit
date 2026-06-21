@@ -42,10 +42,10 @@ jobs:
           UPSTREAM_USER: ${{ inputs.upstream_user || 'Interested-Deving-1896' }}
           REPO_FILTER: ${{ inputs.repo_filter || '' }}
           DRY_RUN: ${{ inputs.dry_run || 'false' }}
-        run: bash scripts/sync-Interested-Deving-1896-forks.sh
+        run: bash ./scripts/sync-Interested-Deving-1896-forks.sh
       - name: Write summary
         if: always()
         env:
           JOB_STATUS: ${{ job.status }}
           INPUTS_JSON: ${{ toJSON(inputs) }}
-        run: bash scripts/write-summary.sh
+        run: bash ./scripts/write-summary.sh
