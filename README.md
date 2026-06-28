@@ -4,41 +4,39 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-eggs-audit)
 
 <!-- AI:start:what-it-does -->
-This project provides integration plugins for extending Penguins-Eggs with 39 git-based tools across eight domains, including security auditing, supply chain transparency, and configuration management. It is designed for developers and teams managing software supply chains, enabling automated workflows, artifact mirroring, and enhanced security practices.
+This project provides integration plugins for extending Penguins-Eggs with 39 git-based tools across eight domains, including security auditing, supply chain transparency, and configuration management. It is designed for developers and teams managing software supply chains, enabling automated workflows, enhanced security checks, and improved transparency in development and distribution processes.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project integrates 39 git-based tools across 8 domains to enhance security auditing and supply chain transparency within the Penguins-Eggs ecosystem. It is structured as a modular plugin system, with each domain implemented as a separate module under the `src/` directory. The modules are exposed via the `exports` field in `package.json` for external consumption. The `bin/` directory contains CLI tools, while the `plugins/` directory includes additional domain-specific integrations. GitHub Actions workflows automate tasks like repository synchronization, artifact mirroring, and security scans. The project uses TypeScript for type safety, with compiled output stored in the `dist/` directory.
+The project integrates 39 git-based tools across 8 domains, organized into plugins and workflows for security auditing and supply chain transparency. The architecture is modular, with each domain represented by a dedicated directory under `src/` and `plugins/`. The `src/` directory contains core logic and domain-specific modules, while `plugins/` provides integration scripts for external tools. Workflows are defined in `.github/workflows` for automation tasks like syncing repositories and managing artifacts. The CLI entry point is `bin/cli.js`.
 
 Directory structure:
 ```plaintext
 .
-├── bin/                     # CLI tools
-├── dist/                    # Compiled output
-├── plugins/                 # Domain-specific integrations
-│   ├── decentralized/
+├── bin/                     # CLI entry point and scripts
+├── plugins/                 # Integration plugins for external tools
 │   ├── dev-workflow/
 │   ├── distribution/
 │   ├── packaging/
-│   ├── sbom/
+│   ├── decentralized/
 │   ├── security-audit/
-│   └── ...
-├── src/                     # Core modules
+│   └── sbom/
+├── src/                     # Core logic and domain modules
 │   ├── build-infra/
 │   ├── config-management/
 │   ├── decentralized/
 │   ├── dev-workflow/
 │   ├── distribution/
 │   ├── packaging/
-│   ├── sbom/
 │   ├── security-audit/
-│   └── ...
+│   └── sbom/
+├── .github/workflows/       # CI/CD workflows
 ├── test/                    # Test cases
-├── workflows/               # GitHub Actions workflows
-├── package.json             # Project metadata and exports
-└── tsconfig.json            # TypeScript configuration
+├── scripts/                 # Utility scripts
+├── tsconfig.json            # TypeScript configuration
+└── package.json             # Project metadata and dependencies
 ```
 <!-- AI:end:architecture -->
 
@@ -62,20 +60,22 @@ cd penguins-eggs-audit
 ## CI
 
 <!-- AI:start:ci -->
-- **add-mirror-repo.yml**: Adds new repositories to the mirror list. Requires `GITHUB_TOKEN` and `MIRROR_REPO_SECRET`.
-- **check-gitlab-sync.yml**: Verifies synchronization status between GitHub and GitLab repositories. Requires `GITLAB_TOKEN`.
-- **cleanup-pollution.yml**: Removes unnecessary files and artifacts from repositories. No secrets required.
+The repository uses GitHub Actions for continuous integration and automation. Below are the workflows and their purposes:
+
+- **add-mirror-repo.yml**: Adds a new repository to the mirror list. Requires `GITHUB_TOKEN`.
+- **check-gitlab-sync.yml**: Verifies synchronization status between GitHub and GitLab. Requires `GITLAB_TOKEN`.
+- **cleanup-pollution.yml**: Cleans up temporary or unused resources. No secrets required.
 - **clone-org.yml**: Clones all repositories from a specified organization. Requires `GITHUB_TOKEN`.
-- **create-readmes.yml**: Generates README files for repositories based on templates. No secrets required.
-- **mirror-artifacts.yml**: Mirrors build artifacts to external storage. Requires `ARTIFACT_STORAGE_KEY`.
-- **mirror-orgs-full.yml**: Performs a full sync of all repositories in an organization. Requires `GITHUB_TOKEN`.
-- **mirror-orgs-watchdog.yml**: Monitors and triggers incremental syncs for organization repositories. Requires `GITHUB_TOKEN`.
-- **pr-automation.yml**: Automates pull request creation for dependency updates. Requires `GITHUB_TOKEN`.
-- **rate-limit-status.yml**: Checks API rate limits for GitHub and GitLab. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.
-- **rotate-token.yml**: Rotates access tokens for GitHub and GitLab integrations. Requires `ADMIN_TOKEN`.
-- **setup-gitlab-schedules.yml**: Configures scheduled tasks for GitLab CI pipelines. Requires `GITLAB_TOKEN`.
-- **sync-to-gitlab.yml**: Synchronizes repositories from GitHub to GitLab. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.
-- **token-health.yml**: Validates the health and expiration of access tokens. Requires `ADMIN_TOKEN`.
+- **create-readmes.yml**: Generates README files for repositories. No secrets required.
+- **mirror-orgs-full.yml**: Mirrors all repositories from specified organizations. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.
+- **mirror-orgs-watchdog.yml**: Monitors and ensures organization mirrors are up-to-date. Requires `GITHUB_TOKEN`.
+- **pr-automation.yml**: Automates pull request tasks like labeling and merging. Requires `GITHUB_TOKEN`.
+- **rate-limit-status.yml**: Monitors API rate limits for GitHub and GitLab. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.
+- **rotate-token.yml**: Rotates access tokens for GitHub and GitLab. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.
+- **sync-forks.yml**: Synchronizes forked repositories with upstream changes. Requires `GITHUB_TOKEN`.
+- **sync-to-gitlab.yml**: Syncs repositories from GitHub to GitLab. Requires `GITLAB_TOKEN`.
+- **trigger-artifact-mirror.yml**: Triggers artifact mirroring workflows. Requires `GITHUB_TOKEN`.
+- **update-readmes.yml**: Updates README files with the latest information. No secrets required.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -95,9 +95,7 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 ## Contributors
 
 <!-- AI:start:contributors -->
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896): 316 commits
-
-*This repository is a mirror. Please refer to the upstream source for additional details.*
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896): 322 commits
 <!-- AI:end:contributors -->
 
 ## Origins
