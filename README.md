@@ -4,32 +4,42 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-eggs-audit)
 
 <!-- AI:start:what-it-does -->
-This project extends the Penguins-Eggs tool with integration plugins for 39 git-based projects across eight domains, including security auditing, supply chain transparency, and configuration management. It provides workflows and tools for developers and organizations to enhance software supply chain security, automate development processes, and improve transparency in distributed systems.
+This project extends the Penguins-Eggs tool with integration plugins for 39 git-based projects across 8 domains, addressing security auditing and supply chain transparency. It is used by developers and organizations to automate workflows, enhance security practices, and improve transparency in software development and distribution processes.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project integrates 39 git-based tools across 8 domains, focusing on security auditing and supply chain transparency. It uses a modular architecture with plugins organized by domain. Each plugin provides specific functionality, such as security audits, decentralized mirrors, or build infrastructure enhancements. The `src/` directory contains core logic, while `plugins/` houses domain-specific integrations. The `bin/` directory includes CLI tools, and workflows in `.github/workflows/` automate tasks like repository mirroring and artifact synchronization. The project uses a `package.json` file to define module exports and entry points for each domain.
+The project integrates 39 git-based tools across 8 domains, organized into plugins and workflows for security auditing and supply chain transparency. Key components include:
+
+1. **Plugins**: Located in `plugins/`, these extend Penguins-Eggs with domain-specific functionality (e.g., `security-audit/vouch-attest`, `packaging/gitpack-install`, `decentralized/ipfs-mirror`).
+2. **Workflows**: Found in `.github/workflows/`, these automate tasks like repository mirroring, artifact synchronization, and security scanning.
+3. **CLI**: A command-line interface (`bin/cli.js`) provides entry points for executing audit-related tasks.
+4. **Source Code**: Core logic resides in `src/`, with subdirectories for each domain (e.g., `src/security-audit`, `src/packaging`).
+5. **Distribution**: Compiled outputs are stored in `dist/`, with exports defined in `package.json`.
 
 Directory structure:
 ```plaintext
 .
-├── bin/                     # CLI tools
-├── plugins/                 # Domain-specific plugins
-│   ├── dev-workflow/
-│   ├── distribution/
+├── bin/
+│   └── cli.js
+├── dist/
+│   └── src/
+├── plugins/
+│   ├── security-audit/
 │   ├── packaging/
 │   ├── decentralized/
+│   └── ...
+├── src/
 │   ├── security-audit/
-│   └── sbom/
-├── src/                     # Core logic
-├── scripts/                 # Utility scripts
-├── test/                    # Test cases
-├── .github/workflows/       # CI/CD workflows
-├── package.json             # Module definitions and exports
-├── tsconfig.json            # TypeScript configuration
-└── README.md                # Project documentation
+│   ├── packaging/
+│   ├── decentralized/
+│   └── ...
+├── .github/
+│   └── workflows/
+├── test/
+├── package.json
+└── tsconfig.json
 ```
 <!-- AI:end:architecture -->
 
@@ -53,24 +63,23 @@ cd penguins-eggs-audit
 ## CI
 
 <!-- AI:start:ci -->
-The repository uses GitHub Actions for continuous integration and automation. Below is a summary of the workflows and their purposes:
+The repository uses GitHub Actions for continuous integration and automation. Below are the workflows and their purposes:
 
-- **add-mirror-repo.yml**: Adds new repositories to the mirror list.
-- **check-gitlab-sync.yml**: Verifies synchronization status between GitHub and GitLab.
-- **cleanup-pollution.yml**: Cleans up temporary or unused resources in the repository.
-- **mirror-orgs-full.yml**: Performs a full mirror of all repositories in specified organizations.
-- **mirror-orgs-watchdog.yml**: Monitors and ensures organization mirrors are up-to-date.
-- **pr-automation.yml**: Automates tasks for pull request management, such as labeling and merging.
-- **rate-limit-rerun.yml**: Retries workflows affected by API rate limits.
-- **rotate-token.yml**: Rotates API tokens for security purposes.
-- **sync-to-gitlab.yml**: Synchronizes repositories from GitHub to GitLab.
-- **trigger-artifact-mirror.yml**: Triggers artifact mirroring workflows.
-- **update-readmes.yml**: Updates README files across repositories.
+- **add-mirror-repo.yml**: Adds new repositories to the mirror configuration.  
+- **check-gitlab-sync.yml**: Verifies synchronization status between GitHub and GitLab.  
+- **cleanup-pollution.yml**: Removes temporary or unused resources from the repository.  
+- **clone-org.yml**: Clones all repositories from a specified organization.  
+- **create-readmes.yml**: Generates README files for subprojects.  
+- **pr-automation.yml**: Automates pull request workflows, including labeling and merging.  
+- **rate-limit-rerun.yml**: Re-runs workflows affected by API rate limits.  
+- **sync-to-gitlab.yml**: Synchronizes repositories from GitHub to GitLab.  
+- **mirror-artifacts.yml**: Mirrors build artifacts to external storage.  
+- **rotate-token.yml**: Rotates API tokens for security purposes.  
 
-Required secrets:
-- `GITHUB_TOKEN`: Default token for GitHub API access.
-- `GITLAB_TOKEN`: Token for GitLab API access.
-- `MIRROR_API_KEY`: API key for external mirroring services.
+Required secrets:  
+- `GITHUB_TOKEN`: Default token for repository access.  
+- `GITLAB_TOKEN`: Token for GitLab API access.  
+- `ARTIFACT_STORAGE_KEY`: Key for external artifact storage.  
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -92,7 +101,7 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 <!-- AI:start:contributors -->
 [@Interested-Deving-1896](https://github.com/Interested-Deving-1896): 323 commits
 
-*Note: This repository is a mirror. Please refer to the upstream source for additional context.*
+*Note: This repository is a mirror. Please refer to the upstream source for additional details.*
 <!-- AI:end:contributors -->
 
 ## Origins
