@@ -4,32 +4,39 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-eggs-audit)
 
 <!-- AI:start:what-it-does -->
-This project extends the Penguins-Eggs tool with integration plugins for 39 git-based projects across 8 domains, including security auditing, supply chain transparency, and development workflows. It provides automation and tooling to enhance repository management, improve security practices, and streamline software distribution and packaging processes. It is designed for developers and teams managing complex software supply chains and infrastructure.
+This project provides integration plugins for Penguins-Eggs, enabling security auditing and supply chain transparency across 39 git-based projects in 8 domains. It is used by developers and organizations to automate workflows, manage configurations, and enhance security practices in software development and distribution pipelines.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project integrates 39 git-based tools across 8 domains, focusing on security auditing and supply chain transparency. It uses a modular architecture with plugins organized by domain. Each plugin provides domain-specific functionality, such as security audits, decentralized storage, and build infrastructure. The main entry point is defined in `package.json`, and the `bin/` directory contains the CLI tool. Workflows automate tasks like repository mirroring, artifact synchronization, and security scans. The `src/` directory contains core logic, while `plugins/` holds domain-specific extensions.
+The project integrates 39 git-based tools across 8 domains, organized into plugins and workflows. The architecture is modular, with each domain represented as a directory under `src/` and `plugins/`. The `src/` directory contains core logic and domain-specific modules, while `plugins/` houses integration scripts for external tools. Workflows are defined in `.github/workflows` and automate tasks like repository synchronization, artifact mirroring, and security scans. The CLI entry point is `bin/cli.js`. The project uses a modular export structure defined in `package.json` for domain-specific functionality.
 
 Directory structure:
 ```plaintext
-.
-├── bin/                     # CLI tools
-├── plugins/                 # Domain-specific plugins
+penguins-eggs-audit/
+├── bin/                     # CLI entry point
+├── plugins/                 # Integration plugins for external tools
 │   ├── dev-workflow/
 │   ├── distribution/
 │   ├── packaging/
 │   ├── decentralized/
 │   ├── security-audit/
 │   └── sbom/
-├── src/                     # Core logic
-├── test/                    # Test cases
-├── workflows/               # CI/CD workflows
-├── .github/                 # GitHub-specific configurations
-├── package.json             # Project metadata and entry points
-├── tsconfig.json            # TypeScript configuration
-└── README.md                # Project documentation
+├── src/                     # Core logic and domain modules
+│   ├── build-infra/
+│   ├── config-management/
+│   ├── decentralized/
+│   ├── dev-workflow/
+│   ├── distribution/
+│   ├── packaging/
+│   ├── sbom/
+│   └── security-audit/
+├── test/                    # Test files
+├── scripts/                 # Utility scripts
+├── .github/workflows/       # CI/CD workflows
+├── package.json             # Project metadata and exports
+└── tsconfig.json            # TypeScript configuration
 ```
 <!-- AI:end:architecture -->
 
@@ -53,20 +60,23 @@ cd penguins-eggs-audit
 ## CI
 
 <!-- AI:start:ci -->
-The repository uses GitHub Actions for continuous integration and automation. Below are the workflows and their purposes:
+The repository uses GitHub Actions for continuous integration and automation. Below is a summary of the workflows and their purposes:
 
-- **add-mirror-repo.yml**: Adds new repositories to the mirror list. Requires `GITHUB_TOKEN`.
-- **check-gitlab-sync.yml**: Verifies synchronization status with GitLab. Requires `GITLAB_TOKEN`.
-- **cleanup-pollution.yml**: Cleans up temporary or unused resources. No secrets required.
-- **mirror-artifacts.yml**: Mirrors build artifacts to external storage. Requires `STORAGE_ACCESS_KEY`.
-- **mirror-orgs-full.yml**: Performs a full mirror of all repositories in an organization. Requires `GITHUB_TOKEN`.
-- **mirror-orgs-watchdog.yml**: Monitors and reports issues in organization mirroring. No secrets required.
-- **pr-automation.yml**: Automates pull request workflows, including labeling and merging. Requires `GITHUB_TOKEN`.
-- **rate-limit-status.yml**: Checks API rate limits and logs usage. No secrets required.
-- **rotate-token.yml**: Rotates API tokens for security. Requires `ADMIN_TOKEN`.
-- **sync-to-gitlab.yml**: Synchronizes repositories from GitHub to GitLab. Requires `GITLAB_TOKEN` and `GITHUB_TOKEN`.
+- **add-mirror-repo.yml**: Adds new repositories to the mirror configuration.
+- **check-gitlab-sync.yml**: Verifies synchronization status between GitHub and GitLab.
+- **cleanup-pollution.yml**: Removes temporary or unnecessary files from the repository.
+- **mirror-orgs-full.yml**: Mirrors all repositories from specified organizations.
+- **mirror-orgs-watchdog.yml**: Monitors and ensures consistency of mirrored organizations.
+- **pr-automation.yml**: Automates pull request workflows, including labeling and merging.
+- **rate-limit-status.yml**: Checks and reports API rate limits for GitHub and GitLab.
+- **rotate-token.yml**: Rotates access tokens for secure API usage.
+- **sync-to-gitlab.yml**: Synchronizes repository changes to GitLab.
+- **trigger-artifact-mirror.yml**: Triggers artifact mirroring workflows.
 
-Refer to `.github/workflows/` for full configuration details.
+Required secrets:
+- `GITHUB_TOKEN`: Default GitHub token for API operations.
+- `GITLAB_TOKEN`: Token for GitLab API access.
+- `MIRROR_SSH_KEY`: SSH key for repository mirroring.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -86,9 +96,7 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 ## Contributors
 
 <!-- AI:start:contributors -->
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896): 331 commits
-
-Note: This repository is a mirror. Please refer to the upstream source for additional details.
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896): 332 commits
 <!-- AI:end:contributors -->
 
 ## Origins
