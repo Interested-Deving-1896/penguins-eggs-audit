@@ -90,7 +90,7 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 <!-- AI:start:contributors -->
 [@Interested-Deving-1896](https://github.com/Interested-Deving-1896): 333 commits
 
-*Note: This repository is a mirror. Please refer to the upstream source for additional context.*
+*Note: This repository is a mirror. Please refer to the upstream source for the original project.*
 <!-- AI:end:contributors -->
 
 ## Origins
