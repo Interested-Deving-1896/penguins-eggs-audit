@@ -4,35 +4,34 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-eggs-audit)
 
 <!-- AI:start:what-it-does -->
-This project provides integration plugins for Penguins-Eggs, enabling security auditing and supply chain transparency across 39 git-based projects in 8 domains. It is used by developers and infrastructure teams to automate workflows such as repository mirroring, artifact management, configuration management, and security scanning. The project focuses on enhancing transparency and reliability in software development and distribution pipelines.
+This project provides integration plugins for Penguins-Eggs, enabling security auditing and supply chain transparency across 39 git-based projects in 8 domains. It is used by developers and infrastructure teams to automate workflows such as artifact mirroring, repository synchronization, security scans, and SBOM generation. The project focuses on enhancing transparency and security in software development pipelines.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project integrates 39 git-based tools across 8 domains, focusing on security auditing and supply chain transparency. It uses a modular architecture with plugins organized by domain. Each plugin provides specific functionality, such as security audits, SBOM generation, or decentralized storage. The core logic resides in `src/`, with compiled outputs in `dist/`. CLI commands are available via `bin/cli.js`. GitHub Actions workflows automate tasks like repository mirroring, artifact synchronization, and security scans. The directory structure is as follows:
+The project integrates 39 git-based tools across 8 domains, organized into plugins and workflows. The architecture consists of a modular structure with each domain represented as a plugin under the `plugins/` directory. The `src/` directory contains core logic, while `bin/` includes CLI tools. Workflows for automation are defined in `.github/workflows/`. The `dist/` directory contains compiled output for distribution. The `package.json` file defines module exports for each domain, enabling selective imports.
 
+Directory structure:
 ```plaintext
 .
-├── bin/                     # CLI scripts
+├── bin/                     # CLI tools (e.g., eggs-audit)
 ├── dist/                    # Compiled output
-├── plugins/                 # Domain-specific plugins
+├── plugins/                 # Domain-specific integrations
+│   ├── build-infra/
+│   ├── config-management/
 │   ├── decentralized/
 │   ├── dev-workflow/
 │   ├── distribution/
 │   ├── packaging/
-│   ├── security-audit/
-│   └── sbom/
-├── src/                     # Source code
+│   ├── sbom/
+│   └── security-audit/
+├── src/                     # Core logic
 ├── test/                    # Test cases
-├── workflows/               # GitHub Actions workflows
-├── ARCHITECTURE.md          # Detailed architecture documentation
-├── INTEGRATION-SPEC.md      # Integration specifications
-├── package.json             # Project metadata and dependencies
+├── .github/workflows/       # Automation workflows
+├── package.json             # Module definitions and metadata
 └── tsconfig.json            # TypeScript configuration
-``` 
-
-Plugins interact with the core via defined APIs and are exported as modules for external use. Workflows ensure continuous integration and synchronization across repositories.
+```
 <!-- AI:end:architecture -->
 
 ## Install
