@@ -4,7 +4,7 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-eggs-audit)
 
 <!-- AI:start:what-it-does -->
-This project provides integration plugins for Penguins-Eggs, enabling security auditing and supply chain transparency across 39 git-based projects in 8 domains. It is used by developers and infrastructure teams to automate workflows such as artifact mirroring, repository synchronization, security scans, and SBOM generation. The project focuses on enhancing transparency and security in software development pipelines.
+This project provides integration plugins for extending Penguins-Eggs with 39 git-based tools across eight domains, including security auditing, supply chain transparency, and decentralized distribution. It is designed for developers and organizations managing software supply chains, enabling automated workflows, configuration management, and enhanced security practices.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
@@ -54,20 +54,27 @@ cd penguins-eggs-audit
 ## CI
 
 <!-- AI:start:ci -->
-The repository uses GitHub Actions for continuous integration and automation. Below are the workflows and their purposes:
+The repository uses GitHub Actions for continuous integration. Below are the workflows and their purposes:
 
-- **add-mirror-repo.yml**: Adds new repositories to the mirror configuration. Requires `GITHUB_TOKEN`.
-- **check-gitlab-sync.yml**: Verifies synchronization status between GitHub and GitLab. Requires `GITLAB_TOKEN`.
-- **cleanup-pollution.yml**: Removes temporary or unused resources. No secrets required.
-- **mirror-orgs-full.yml**: Mirrors all repositories from specified organizations. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.
-- **mirror-orgs-watchdog.yml**: Monitors and reports issues with organization mirroring. Requires `GITHUB_TOKEN`.
-- **pr-automation.yml**: Automates pull request workflows, including labeling and merging. Requires `GITHUB_TOKEN`.
-- **rate-limit-status.yml**: Checks API rate limits for GitHub and GitLab. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.
-- **rotate-token.yml**: Rotates access tokens for GitHub and GitLab. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.
-- **sync-to-gitlab.yml**: Synchronizes repositories from GitHub to GitLab. Requires `GITHUB_TOKEN` and `GITLAB_TOKEN`.
-- **trigger-artifact-mirror.yml**: Triggers artifact mirroring workflows. Requires `GITHUB_TOKEN`.
+- **add-mirror-repo.yml**: Adds a new repository to the mirror list.  
+- **check-gitlab-sync.yml**: Verifies synchronization status between GitHub and GitLab repositories.  
+- **cleanup-pollution.yml**: Removes temporary or unnecessary files from the repository.  
+- **clone-org.yml**: Clones all repositories from a specified organization.  
+- **create-readmes.yml**: Generates README files for subprojects or plugins.  
+- **fork-neon-repos.yml**: Automates forking of repositories related to the Neon project.  
+- **gl-storage-scan.yml**: Scans GitLab storage for anomalies or unused resources.  
+- **mirror-orgs-full.yml**: Performs a full mirror of all repositories in specified organizations.  
+- **mirror-orgs-watchdog.yml**: Monitors and updates mirrored repositories for changes.  
+- **pr-automation.yml**: Automates pull request workflows, including labeling and merging.  
+- **rate-limit-rerun.yml**: Retries failed workflows due to API rate limits.  
+- **sync-to-gitlab.yml**: Synchronizes repositories from GitHub to GitLab.  
+- **token-health.yml**: Checks the validity and expiration of authentication tokens.  
 
-Refer to the `.github/workflows/` directory for detailed configurations.
+Required secrets:  
+- `GITHUB_TOKEN`: Used for repository access and API calls.  
+- `GITLAB_TOKEN`: Required for GitLab synchronization workflows.  
+- `MIRROR_REPO_URL`: URL for the target mirror repository.  
+- `API_RATE_LIMIT_KEY`: Optional, for managing API rate limits.  
 <!-- AI:end:ci -->
 
 ## Mirror chain
