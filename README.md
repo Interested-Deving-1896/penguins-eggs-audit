@@ -1,7 +1,8 @@
 [update-readmes]   Mode: rewrite — migrating to template structure...
 # penguins-eggs-audit
 
-[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-eggs-audit)
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/penguins-eggs-audit) [![KDE Eco](https://img.shields.io/badge/KDE%20Eco-certified-brightgreen?logo=kde&logoColor=white&style=flat-square)](https://eco.kde.org/) [![Blue Angel](https://img.shields.io/badge/Blue%20Angel-DE--UZ%20215-0055a4?style=flat-square)](https://www.blauer-engel.de/en/certification/criteria) [![Energy](https://api.green-coding.io/v1/ci/badge/get?repo=Interested-Deving-1896%2Fpenguins-eggs-audit&branch=main&workflow=eco-audit.yml)](https://metrics.green-coding.io/ci-index.html)
+
 
 <!-- AI:start:what-it-does -->
 This project provides integration plugins for extending Penguins-Eggs with 39 git-based tools across eight domains, including security auditing, supply chain transparency, and decentralized distribution. It is designed for developers and organizations managing software supply chains, enabling automated workflows, configuration management, and enhanced security practices.
@@ -56,25 +57,25 @@ cd penguins-eggs-audit
 <!-- AI:start:ci -->
 The repository uses GitHub Actions for continuous integration. Below are the workflows and their purposes:
 
-- **add-mirror-repo.yml**: Adds a new repository to the mirror list.  
-- **check-gitlab-sync.yml**: Verifies synchronization status between GitHub and GitLab repositories.  
-- **cleanup-pollution.yml**: Removes temporary or unnecessary files from the repository.  
-- **clone-org.yml**: Clones all repositories from a specified organization.  
-- **create-readmes.yml**: Generates README files for subprojects or plugins.  
-- **fork-neon-repos.yml**: Automates forking of repositories related to the Neon project.  
-- **gl-storage-scan.yml**: Scans GitLab storage for anomalies or unused resources.  
-- **mirror-orgs-full.yml**: Performs a full mirror of all repositories in specified organizations.  
-- **mirror-orgs-watchdog.yml**: Monitors and updates mirrored repositories for changes.  
-- **pr-automation.yml**: Automates pull request workflows, including labeling and merging.  
-- **rate-limit-rerun.yml**: Retries failed workflows due to API rate limits.  
-- **sync-to-gitlab.yml**: Synchronizes repositories from GitHub to GitLab.  
-- **token-health.yml**: Checks the validity and expiration of authentication tokens.  
+- **add-mirror-repo.yml**: Adds a new repository to the mirror list.
+- **check-gitlab-sync.yml**: Verifies synchronization status between GitHub and GitLab repositories.
+- **cleanup-pollution.yml**: Removes temporary or unnecessary files from the repository.
+- **clone-org.yml**: Clones all repositories from a specified organization.
+- **create-readmes.yml**: Generates README files for subprojects or plugins.
+- **fork-neon-repos.yml**: Automates forking of repositories related to the Neon project.
+- **gl-storage-scan.yml**: Scans GitLab storage for anomalies or unused resources.
+- **mirror-orgs-full.yml**: Performs a full mirror of all repositories in specified organizations.
+- **mirror-orgs-watchdog.yml**: Monitors and updates mirrored repositories for changes.
+- **pr-automation.yml**: Automates pull request workflows, including labeling and merging.
+- **rate-limit-rerun.yml**: Retries failed workflows due to API rate limits.
+- **sync-to-gitlab.yml**: Synchronizes repositories from GitHub to GitLab.
+- **token-health.yml**: Checks the validity and expiration of authentication tokens.
 
-Required secrets:  
-- `GITHUB_TOKEN`: Used for repository access and API calls.  
-- `GITLAB_TOKEN`: Required for GitLab synchronization workflows.  
-- `MIRROR_REPO_URL`: URL for the target mirror repository.  
-- `API_RATE_LIMIT_KEY`: Optional, for managing API rate limits.  
+Required secrets:
+- `GITHUB_TOKEN`: Used for repository access and API calls.
+- `GITLAB_TOKEN`: Required for GitLab synchronization workflows.
+- `MIRROR_REPO_URL`: URL for the target mirror repository.
+- `API_RATE_LIMIT_KEY`: Optional, for managing API rate limits.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -110,6 +111,20 @@ _Original project — no upstream fork._
 <!-- AI:start:resources -->
 _No additional resource files found._
 <!-- AI:end:resources -->
+
+<!-- AI:start:accessibility -->
+This repo uses automated accessibility auditing via `check-accessibility.yml`.
+
+Checks include: CODEOWNERS ownership coverage, README screen-reader compatibility,
+WCAG 2.1 AA HTML compliance, audio overview (espeak-ng), and Braille output (liblouis).
+
+
+
+
+Run the [Check Accessibility](https://github.com/Interested-Deving-1896/penguins-eggs-audit/actions/workflows/check-accessibility.yml)
+workflow to generate the first report and accessibility artifacts.
+See [DOCS/accessibility.md](https://github.com/Interested-Deving-1896/penguins-eggs-audit/blob/main/DOCS/accessibility.md) for the full reference.
+<!-- AI:end:accessibility -->
 
 ## License
 
